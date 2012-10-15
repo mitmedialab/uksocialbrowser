@@ -30,8 +30,8 @@
 
 
 
-#chart1 {
-  height: 500px;
+#chart1,#chart2 {
+  height: 210px;
   margin: 10px;
   min-width: 100px;
   min-height: 100px;
