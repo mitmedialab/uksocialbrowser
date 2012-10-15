@@ -1,0 +1,43 @@
+.navbar-inner{
+  background-image: -moz-linear-gradient(center top, #eee, #ccc);
+  background: -webkit-gradient(linear, left top, left bottom, from(#eee), to(#ccc));
+  background-color: #006E3C;
+  color:black;
+}
+
+.navbar .brand{
+  color:black;
+}
+
+.navbar .nav .active >a{
+  background:none;
+  /*background:#228E5C;*/
+  border-left:1px solid white;
+  border-right:1px solid white;
+}
+
+
+.navbar .nav .active >a:hover{
+  background:none;
+  background-image: -moz-linear-gradient(center top, #228E5C, #004E1C);
+  border-left:1px solid white;
+  border-right:1px solid white;
+}
+
+#main_container{
+  margin-top:50px;
+}
+
+
+
+#chart1 {
+  height: 500px;
+  margin: 10px;
+  min-width: 100px;
+  min-height: 100px;
+/*
+  Minimum height and width is a good idea to prevent negative SVG dimensions...
+  For example width should be =< margin.left + margin.right + 1,
+  of course 1 pixel for the entire chart would not be very useful, BUT should not have errors
+*/
+}
