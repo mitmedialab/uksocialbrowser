@@ -13,6 +13,8 @@ var GuardianView = Backbone.View.extend({
 
   load_section_data: function(paper, section){
     var that = this;
+    $("#main_container .btn-inverse").toggleClass("btn-inverse");
+    $("#" + section).toggleClass("btn-inverse");
     jQuery.getJSON("data/" + paper + "_" + section + "_articles.json", function(articles){
       that.articles = crossfilter(articles)
       that.week_dimension = that.articles.dimension(function(d){return parseInt(d.week)});

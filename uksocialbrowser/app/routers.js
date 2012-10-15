@@ -8,7 +8,7 @@ var GRouter = Backbone.Router.extend({
   },
 
   categories: function(category){
-    g_view.render(category);
+    g_view.load_section_data("guardian", category);
   },
 });
 

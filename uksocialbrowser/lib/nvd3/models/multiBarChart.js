@@ -32,7 +32,7 @@ nv.models.multiBarChart = function() {
     ;
 
   multibar
-    .stacked(false)
+    .stacked(true)
     ;
   xAxis
     .orient('bottom')
@@ -157,8 +157,8 @@ nv.models.multiBarChart = function() {
 
       if (showControls) {
         var controlsData = [
-          { key: 'Grouped', disabled: multibar.stacked() },
-          { key: 'Stacked', disabled: !multibar.stacked() }
+          { key: 'Stacked', disabled: !multibar.stacked() },
+          { key: 'Grouped', disabled: multibar.stacked() }
         ];
 
         controls.width(180).color(['#444', '#444', '#444']);
