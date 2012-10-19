@@ -96,9 +96,17 @@ var GuardianView = Backbone.View.extend({
     var unit_multiplier = this.width.toFixed(2)/100.00;
 
     $(el).empty()
-    $.each(that.female_percent.top(Infinity), function(key, article){
-      $(el).append(that.article_percent_template(article, unit_multiplier));
-    });
+    if(el.match("left")){
+      that.left_index = Array();
+      $.each(that.female_percent.top(Infinity), function(key, article){
+        $(el).append(that.article_percent_template(article, unit_multiplier));
+        that.left_index.push(article.paper + article.section);
+      });
+    }else{
+      $.each(that.left_index, function(k,v){
+        $(el).append(that.article_percent_template(that.paper_sections[v], unit_multiplier));
+      });
+    }
   },
 
   article_percent_template: function(article, unit_multiplier){
@@ -181,15 +189,27 @@ var GuardianView = Backbone.View.extend({
     var unit_multiplier = this.width.toFixed(2)/(tp.total_author_articles).toFixed(2);
     
     $(el).empty();
-    $.each(that.female_articles.top(Infinity), function(key, article){
-      $(el).append(that.count_row_template({
-         label: article.paper + " " + article.section,
-         female: article.female_author_articles,
-         mixed: article.mixed_author_articles,
-         male: article.male_author_articles,
-         unknown: article.unknown_author_articles,
-         m:unit_multiplier
-      }));
+    if(el.match("left")){
+      that.left_index = Array();
+      $.each(that.female_articles.top(Infinity), function(key, article){
+        $(el).append(that.article_count_template(article, unit_multiplier));
+        that.left_index.push(article.paper + article.section);
+      });
+    }else{
+      $.each(that.left_index, function(k,v){
+        $(el).append(that.article_count_template(that.paper_sections[v], unit_multiplier));
+      });
+    }
+  },
+  
+  article_count_template: function(article, unit_multiplier){
+    return that.count_row_template({
+      label: article.paper + " " + article.section,
+      female: article.female_author_articles,
+      mixed: article.mixed_author_articles,
+      male: article.male_author_articles,
+      unknown: article.unknown_author_articles,
+      m:unit_multiplier
     });
   }
 
