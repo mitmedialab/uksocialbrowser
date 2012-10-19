@@ -28,14 +28,54 @@
   margin-top:50px;
 }
 
+.graph_row{
+  font-size:10px;
+}
+
+.graph_row .row_label{
+  display:inline-block;
+  width:120px;
+  font-color:black !important;
+}
+.graph_row div{
+  display:inline-block;
+  padding:2px;
+  border:1px solid white;
+  font-size:10px;
+}
+
+.graph_row div:hover{
+  border:1px solid black;
+}
+
+.graph_row div span{
+  color:white;
+}
+
+.female_data{
+  background:#ddaa44;
+}
+
+.male_data{
+  background:#66aa66;
+}
+
+.mixed_data{
+  background:#66aacc;
+}
+
+.unknown_data{
+  background:#ccc;
+}
 
 
-#chart1,#chart2 {
+
+/*#chart1,#chart2 {
   height: 210px;
   margin: 10px;
   min-width: 100px;
   min-height: 100px;
-/*
+
   Minimum height and width is a good idea to prevent negative SVG dimensions...
   For example width should be =< margin.left + margin.right + 1,
   of course 1 pixel for the entire chart would not be very useful, BUT should not have errors

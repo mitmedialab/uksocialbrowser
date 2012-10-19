@@ -31,38 +31,44 @@
     <!-- Contents -->
     <div class="container" id="main_container">
           <div class="btn-group">
-          <a class="btn filter btn-inverse" id="news" href="#news">News</a>
-          <a class="btn filter" id="opinion" href="#opinion">Opinion</a>
-          <a class="btn filter" id="sport" href="#sport">Sport</a>
-          <a class="btn filter" id="artsculture" href="#artsculture">Arts & Culture</a>
-          <a class="btn filter" id="lifestyle" href="#lifestyle">Lifestyle</a>
-          <a class="btn filter" id="entertainment" href="#entertainment">Entertainment</a>
-          <a class="btn filter" id="moneyfinance" href="#moneyfinance">Money &amp; Finance</a>
-          <a class="btn filter" id="sciencetech" href="#sciencetech">Science &amp; Technology</a>
+          <a class="label filter btn-inverse" id="news" href="#articlevolume">Article Volume</a>
+          <a class="label filter" id="opinion" href="#articlepercent">Article Percent</a>
+          <a class="label filter" id="sport" href="#socialvolume">Social Media Volume</a>
+          <a class="label filter" id="artsculture" href="#socialpercent">Social Media Percent</a>
           </div>
       <hr/>
       <table id="ranking">
       </table>
       <div id="frame">
+        <div class="row">
 
-  <h3>Article Volume</h3>
+        <div class="span4" id="sorted_bargraph_left">
+        </div>
+
+        <div class="span4" id="sorted_bargraph_right">
+        </div>
+     </div>
+  <!-- <h3>Article Volume</h3>
   <div id="chart1">
     <svg></svg>
   </div>
 
-  <h3>Social Volume</h3>
+  <h3>Social Medial Likes, Shares, and +1s</h3>
   <div id="chart2">
     <svg></svg>
-  </div>
-
-
+  </div>-->
 
       <p>Are you having difficulty reading this? This experiment has been tested in the latest Firefox, Safari, and Google Chrome.</p>
       </div>
     </div>
 
     <!-- Inline Templates -->
-    <script type="text/template" id="inline_template">
+    <script type="text/template" id="count_row_template">
+      <div class="graph_row"><span class="row_label"><%=label%></span><div class="female_data" style="width:<%=Math.round(m*female)%>px"><span class="graph_label"><%=female%></span></div><div class="mixed_data" style="width:<%=Math.round(m*mixed)%>px"><span class="graph_label"><%=mixed%></span></div><div class="male_data" style="width:<%=Math.round(m*male)%>px"><span class="graph_label"><%=male%></span></div><div class="unknown_data" style="width:<%=Math.round(m*unknown)%>px"><span class="graph_label"><%=unknown%></span></div></div>
+    </script>
+
+    <script type="text/template" id="percent_row_template">
+      <div class="graph_row"><span class="row_label"><%=label%></span><div class="female_data" style="width:<%=Math.round(m*female)%>px"><span class="graph_label"><%=female%>%</span></div><div class="mixed_data" style="width:<%=Math.round(m*mixed)%>px"><span class="graph_label"><%=mixed%>%</span></div><div class="male_data" style="width:<%=Math.round(m*male)%>px"><span class="graph_label"><%=male%>%</span></div></div>
     </script>
 
     <script type="text/javascript" charset="utf-8" src="lib/jquery-1.7.2.min.js"></script>
@@ -80,8 +86,8 @@
     <script src="lib/nvd3/utils.js"></script>
     <script src="lib/nvd3/models/legend.js"></script>
     <script src="lib/nvd3/models/axis.js"></script>
-    <script src="lib/nvd3/models/multiBar.js"></script>
-    <script src="lib/nvd3/models/multiBarChart.js"></script>
+    <script src="lib/nvd3/models/multiBarHorizontal.js"></script>
+    <script src="lib/nvd3/models/multiBarHorizontalChart.js"></script>
 
     <!-- end NVD3-->
 
