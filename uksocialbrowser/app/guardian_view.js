@@ -2,6 +2,8 @@ var GuardianView = Backbone.View.extend({
      
   events: function() {
     return {
+      "change #left_select": "left_option",
+      "change #right_select": "right_option"
     }
   },
 
@@ -35,6 +37,23 @@ var GuardianView = Backbone.View.extend({
       });
     });
 
+  },
+
+  left_option: function(e){
+    el = $(e);
+    window.location=this.build_url();
+  },
+
+  right_option: function(e){
+    el = $(e);
+    window.location=this.build_url();
+  },
+
+  build_url: function(){
+    url="index.html#";
+    url += $("#left_select").val();
+    url += "/" + $("#right_select").val();
+    return url;
   },
 
   add_paper_data: function(paper_data){

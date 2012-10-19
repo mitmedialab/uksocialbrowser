@@ -11,7 +11,15 @@ var GRouter = Backbone.Router.extend({
   categories: function(left,right){
     el = {"left":"#sorted_bargraph_left", "right":"#sorted_bargraph_right"}
     arg = {"left":left, "right":right}
+
+
     $.each(el, function(k, v){
+
+      $("#" + k  + "_select option").filter(function() {
+        //may want to use $.trim in here
+        return $(this).val() == arg[k]; 
+      }).attr('selected', true);
+
       switch(arg[k]){
         case "articlepercent":
           g_view.load_paper_data(g_view.render_article_percent_graph, v);

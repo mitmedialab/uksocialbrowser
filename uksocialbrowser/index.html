@@ -30,22 +30,31 @@
 
     <!-- Contents -->
     <div class="container" id="main_container">
-          <div class="btn-group">
-          <a class="label filter btn-inverse" id="news" href="#articlevolume">Article Volume</a>
-          <a class="label filter" id="opinion" href="#articlepercent">Article Percent</a>
-          <a class="label filter" id="sport" href="#socialvolume">Social Media Volume</a>
-          <a class="label filter" id="artsculture" href="#socialpercent">Social Media Percent</a>
-          </div>
       <hr/>
-      <table id="ranking">
-      </table>
       <div id="frame">
         <div class="row">
 
-        <div class="span6" id="sorted_bargraph_left">
+        <div class="span6">
+          <select id ="left_select">
+           <option value="articlevolume">Article Volume</option>
+           <option value="articlepercent">Article Percent</option>
+           <option value="socialvolume">Social Media Volume</option>
+           <option value="socialpercent">Social Media Percent</option>
+          </select>
+
+          <div id="sorted_bargraph_left">
+          </div>
         </div>
 
-        <div class="span6" id="sorted_bargraph_right">
+        <div class="span6">
+          <select id ="right_select">
+           <option value="articlevolume">Article Volume</option>
+           <option value="articlepercent">Article Percent</option>
+           <option value="socialvolume">Social Media Volume</option>
+           <option value="socialpercent">Social Media Percent</option>
+          </select>
+          <div id="sorted_bargraph_right">
+          </div>
         </div>
      </div>
   <!-- <h3>Article Volume</h3>
