@@ -13,7 +13,7 @@ var GuardianView = Backbone.View.extend({
     var that = this;
     this.papers={"guardian":false, "dailymail":false, "telegraph":false};
     this.paper_sections = {}
-    this.width = 250;
+    this.width = 300;
     this.count_row_template = _.template($("#count_row_template").html());
     this.percent_row_template = _.template($("#percent_row_template").html());
   },

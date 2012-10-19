@@ -28,6 +28,10 @@
   margin-top:50px;
 }
 
+#sorted_bargraph_right .row_label{
+  display:none;
+}
+
 .graph_row{
   font-size:10px;
 }
