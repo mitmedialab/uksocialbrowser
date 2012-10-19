@@ -13,8 +13,9 @@ var GRouter = Backbone.Router.extend({
     arg = {"left":left, "right":right}
 
 
-    $.each(el, function(k, v){
-
+    $.each(["left", "right"], function(i, k){
+      v = el[k]
+      
       $("#" + k  + "_select option").filter(function() {
         //may want to use $.trim in here
         return $(this).val() == arg[k]; 

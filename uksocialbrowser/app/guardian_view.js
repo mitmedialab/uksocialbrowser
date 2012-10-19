@@ -12,6 +12,7 @@ var GuardianView = Backbone.View.extend({
     console.log("initializing...");
     var that = this;
     this.papers={"guardian":false, "dailymail":false, "telegraph":false};
+    this.paper_sections = {}
     this.width = 250;
     this.count_row_template = _.template($("#count_row_template").html());
     this.percent_row_template = _.template($("#percent_row_template").html());
@@ -57,6 +58,7 @@ var GuardianView = Backbone.View.extend({
   },
 
   add_paper_data: function(paper_data){
+    that = this;
 
     $.each(paper_data, function(key, val){
       paper_data[key]["total_author_articles"] = val.female_author_articles + val.male_author_articles + 
@@ -66,6 +68,12 @@ var GuardianView = Backbone.View.extend({
 
     if(this.section_records == null){
       this.papers[paper_data[0].paper] = true;
+      this.section_papers = $.extend(this.section_papers, paper_data);
+
+      $.each(paper_data, function(k,v){
+        that.paper_sections[v.paper + v.section] = v
+      });
+
       this.section_records = crossfilter(paper_data);
       this.female_articles = this.section_records.dimension(function(d){return d.female_author_articles});
       this.female_percent = this.section_records.dimension(function(d){return parseFloat(d.female_article_percent)});
@@ -76,6 +84,10 @@ var GuardianView = Backbone.View.extend({
     }else if(this.papers[paper_data[0].paper] == false){
       this.papers[paper_data[0].paper] = true;
       this.section_records.add(paper_data);   
+
+      $.each(paper_data, function(k,v){
+        that.paper_sections[v.paper + v.section] = v
+      });
     }
   },
 
@@ -84,14 +96,19 @@ var GuardianView = Backbone.View.extend({
     var unit_multiplier = this.width.toFixed(2)/100.00;
 
     $(el).empty()
-    $.each(that.female_percent.top(1000), function(key, article){
-      $(el).append(that.percent_row_template({
+    $.each(that.female_percent.top(Infinity), function(key, article){
+      $(el).append(that.article_percent_template(article, unit_multiplier));
+    });
+  },
+
+  article_percent_template: function(article, unit_multiplier){
+    that = this
+    return that.percent_row_template({
          label: article.paper + " " + article.section,
          female: Math.round(parseFloat(article.female_article_percent)),
          mixed: Math.round(parseFloat(article.mixed_article_percent)),
          male: Math.round(parseFloat(article.male_article_percent)),
          m:unit_multiplier
-      }));
     });
   },
 
@@ -100,34 +117,61 @@ var GuardianView = Backbone.View.extend({
     var unit_multiplier = this.width.toFixed(2)/100.00;;;;;;;;;
 
     $(el).empty();
+    if(el.match("left")){
+      that.left_index = Array();
+      $.each(that.female_social_percent.top(Infinity), function(key, article){
+        $(el).append(that.article_social_percent_template(article, unit_multiplier));
+        that.left_index.push(article.paper + article.section);
+      });
+    }else{
+      $.each(that.left_index, function(k,v){
+        $(el).append(that.article_social_percent_template(that.paper_sections[v], unit_multiplier));
+      });
+    }
+  },
 
-    $.each(that.female_social_percent.top(1000), function(key, article){
-      $(el).append(that.percent_row_template({
+  article_social_percent_template: function(article, unit_multiplier){
+    that = this;
+    return that.percent_row_template({
          label: article.paper + " " + article.section,
          female: Math.round(parseFloat(article.female_social_percent)),
          mixed: Math.round(parseFloat(article.mixed_social_percent)),
          male: Math.round(parseFloat(article.male_social_percent)),
          m:unit_multiplier
-      }));
-    });
+      });
   },
 
 
+  // left will always load before right
   render_article_count_social_graph: function(el){
     var that = this;
     tp = that.total_article_shares.top(1)[0];
     var unit_multiplier = this.width.toFixed(2)/(tp.total_author_shares).toFixed(2);
 
     $(el).empty()
-    $.each(that.female_social_articles.top(1000), function(key, article){
-      $(el).append(that.count_row_template({
-         label: article.paper + " " + article.section,
-         female: article.female_author_shares,
-         mixed: article.mixed_author_shares,
-         male: article.male_author_shares,
-         unknown: article.unknown_author_shares,
-         m:unit_multiplier
-      }));
+    if(el.match("left")){
+      that.left_index = Array();
+      $.each(that.female_social_articles.top(Infinity), function(key, article){
+        $(el).append(that.article_count_social_template(article, unit_multiplier));
+        that.left_index.push(article.paper + article.section);
+      });
+    }else{
+      //$.each(that.female_social_articles.top(Infinity), function(key, article){
+      $.each(that.left_index, function(k,v){
+        $(el).append(that.article_count_social_template(that.paper_sections[v], unit_multiplier));
+      });
+    }
+  },
+
+  article_count_social_template: function(article, unit_multiplier){
+    var that = this;
+    return that.count_row_template({
+      label: article.paper + " " + article.section,
+      female: article.female_author_shares,
+      mixed: article.mixed_author_shares,
+      male: article.male_author_shares,
+      unknown: article.unknown_author_shares,
+      m:unit_multiplier
     });
   },
 
@@ -137,7 +181,7 @@ var GuardianView = Backbone.View.extend({
     var unit_multiplier = this.width.toFixed(2)/(tp.total_author_articles).toFixed(2);
     
     $(el).empty();
-    $.each(that.female_articles.top(1000), function(key, article){
+    $.each(that.female_articles.top(Infinity), function(key, article){
       $(el).append(that.count_row_template({
          label: article.paper + " " + article.section,
          female: article.female_author_articles,
