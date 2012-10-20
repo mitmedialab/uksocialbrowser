@@ -32,32 +32,48 @@
     <div class="container" id="main_container">
       <hr/>
       <div id="frame">
-        <div class="row">
-
-        <div class="span6">
+        <div id ="annual_data" class="row">
+        <div class="span7">
           <select id ="left_select">
-           <option value="articlevolume">Article Volume</option>
-           <option value="articlepercent">Article Percent</option>
-           <option value="socialvolume">Social Media Volume</option>
-           <option value="socialpercent">Social Media Percent</option>
+           <option value="articlevolume">Number of Articles</option>
+           <option value="articlepercent">Percent of Articles</option>
+           <option value="socialvolume">Number of Likes/Shares/etc</option>
+           <option value="socialpercent">Percent of Likes/Shares/etc</option>
           </select>
 
           <div id="sorted_bargraph_left">
           </div>
         </div>
 
-        <div class="span6">
+        <div class="span5">
           <select id ="right_select">
-           <option value="articlevolume">Article Volume</option>
-           <option value="articlepercent">Article Percent</option>
-           <option value="socialvolume">Social Media Volume</option>
-           <option value="socialpercent">Social Media Percent</option>
+           <option value="articlevolume">Number of Articles</option>
+           <option value="articlepercent">Percent of Articles</option>
+           <option value="socialvolume">Number of Likes/Shares/etc</option>
+           <option value="socialpercent">Percent of Likes/Shares/etc</option>
           </select>
           <div id="sorted_bargraph_right">
           </div>
         </div>
      </div>
-  <!-- <h3>Article Volume</h3>
+
+     <div id="all_weekly_data">
+       <h3>Number of Articles Per Week, [paper][section]</h3>
+       <div class="weekly_data row">
+         <div class="span12" id="horizchart_top">
+           <svg></svg>
+         </div>
+       </div>
+
+       <h3>Number of Likes/Shares/etc Per Week, [paper][section]</h3>
+       <div class="weekly_data row">
+         <div class="span12" id="horizchart_bottom">
+           <svg></svg>
+         </div>
+       </div>
+    </div>
+
+  <!-- 
   <div id="chart1">
     <svg></svg>
   </div>
@@ -66,18 +82,19 @@
   <div id="chart2">
     <svg></svg>
   </div>-->
-      <p> </p>
+      <p></p>
       <!--<p>Are you having difficulty reading this? This experiment has been tested in the latest Firefox, Safari, and Google Chrome.</p>-->
       </div>
     </div>
 
     <!-- Inline Templates -->
     <script type="text/template" id="count_row_template">
-      <div class="graph_row"><span class="row_label"><%=label%></span><div class="female_data" style="width:<%=Math.round(m*female)%>px"><span class="graph_label"><%=female%></span></div><div class="mixed_data" style="width:<%=Math.round(m*mixed)%>px"><span class="graph_label"><%=mixed%></span></div><div class="male_data" style="width:<%=Math.round(m*male)%>px"><span class="graph_label"><%=male%></span></div><div class="unknown_data" style="width:<%=Math.round(m*unknown)%>px"><span class="graph_label"><%=unknown%></span></div></div>
+      <div class="graph_row <%=rowclass%>"><span class="row_label"><%=label%></span><div class="female_data" style="width:<%=Math.round(m*female)%>px"><span class="graph_label"><%=female%></span></div><div class="mixed_data" style="width:<%=Math.round(m*mixed)%>px"><span class="graph_label"><%=mixed%></span></div><div class="male_data" style="width:<%=Math.round(m*male)%>px"><span class="graph_label"><%=male%></span></div><div class="unknown_data" style="width:<%=Math.round(m*unknown)%>px"><span class="graph_label"><%=unknown%></span></div></div>
     </script>
 
     <script type="text/template" id="percent_row_template">
-      <div class="graph_row"><span class="row_label"><%=label%></span><div class="female_data" style="width:<%=Math.round(m*female)%>px"><span class="graph_label"><%=female%>%</span></div><div class="mixed_data" style="width:<%=Math.round(m*mixed)%>px"><span class="graph_label"><%=mixed%>%</span></div><div class="male_data" style="width:<%=Math.round(m*male)%>px"><span class="graph_label"><%=male%>%</span></div></div>
+      <% male_width = Math.round(m*100) - Math.round(m*female) - Math.round(m*mixed);%>
+      <div class="graph_row <%=rowclass%>"><span class="row_label"><%=label%></span><div class="female_data" style="width:<%=Math.round(m*female)%>px"><span class="graph_label"><%=female%>%</span></div><div class="mixed_data" style="width:<%=Math.round(m*mixed)%>px"><span class="graph_label"><%=mixed%>%</span></div><div class="male_data" style="width:<%=male_width%>px"><span class="graph_label"><%=male%>%</span></div></div>
     </script>
 
     <script type="text/javascript" charset="utf-8" src="lib/jquery-1.7.2.min.js"></script>
