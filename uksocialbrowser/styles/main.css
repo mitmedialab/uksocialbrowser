@@ -87,6 +87,9 @@
   background:#ccc;
 }
 
+.nv-controlsWrap{
+  display:none;
+}
 
 
 /*#chart1,#chart2 {

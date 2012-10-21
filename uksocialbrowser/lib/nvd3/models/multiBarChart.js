@@ -16,7 +16,7 @@ nv.models.multiBarChart = function() {
     , width = null
     , height = null
     , color = nv.utils.defaultColor()
-    , showControls = true
+    , showControls = false
     , showLegend = true
     , reduceXTicks = true // if false a tick will show for every data point
     , rotateLabels = 0
@@ -71,7 +71,7 @@ nv.models.multiBarChart = function() {
       var container = d3.select(this),
           that = this;
 
-      var availableWidth = (width  || parseInt(container.style('width')) || 760)
+      var availableWidth = (width  || parseInt(container.style('width')) || 900)
                              - margin.left - margin.right,
           availableHeight = (height || parseInt(container.style('height')) || 200)
                              - margin.top - margin.bottom;

@@ -18,7 +18,7 @@ nv.models.multiBarHorizontalChart = function() {
     , color = nv.utils.defaultColor()
     , showControls = true
     , showLegend = true
-    , stacked = false
+    , stacked = true
     , tooltips = true
     , tooltip = function(key, x, y, e, graph) {
         return '<h3>' + key + ' - ' + x + '</h3>' +
