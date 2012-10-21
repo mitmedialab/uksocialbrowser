@@ -91,6 +91,15 @@
   display:none;
 }
 
+.nv-bar{
+  stroke-opacity:0.1 !important;
+}
+
+.nv-group{
+  stroke-opacity:0.1 !important;
+}
+
+
 
 /*#chart1,#chart2 {
   height: 210px;
