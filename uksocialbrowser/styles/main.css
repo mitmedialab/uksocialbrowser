@@ -48,9 +48,17 @@
 
 .graph_row .row_label{
   display:inline-block;
-  width:120px;
+  width:150px;
   font-color:black !important;
+  font-size:12px;
+  white-space:nowrap;
+  margin-right:2px;
 }
+
+.graph_row:hover .row_label{
+  font-weight:bold;
+}
+
 .graph_row div{
   display:inline-block;
   padding:2px;
