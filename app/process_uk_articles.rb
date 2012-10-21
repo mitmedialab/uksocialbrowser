@@ -41,13 +41,11 @@ CSV.foreach(filename, {:headers =>true, :header_converters => :symbol,
   section = correlations.get_section(paper, article[:section])
   next if section.nil?
   articles[section] = [] if(!articles.has_key? section)
-  if(paper=="guardian")
-    date = Date.parse(article[:date]) if paper=="guardian"
-    week = "#{date.year}" + "%02d" % date.cweek
-  end
-  week = article[:date] if paper=="dailymail"
+  date = Date.parse(article[:date].to_s)
+  year = date.year
+  year = "2011" if date.month == 1 and date.day == 1 #since 01-01 is still week 52
+  week = "#{year}" + "%02d" % date.cweek
   #correct for the year overlap
-  week = "201152"if week=="201201"
   article_hash       =   {"id" => article_id,
                           "date"=>date.to_s, 
                           "week"=>week,
@@ -56,12 +54,12 @@ CSV.foreach(filename, {:headers =>true, :header_converters => :symbol,
                           #"url"=>article[:googleplus].gsub("http://www.guardian.co.uk","")}
                           #"title"=>article[:url]}
   articles[section] << article_hash
-  File.open("results/articles/#{paper}/#{article_id}.json", "wb") do |f|
-    f.write({"date"=>date.to_s, "gender"=>article[:gender], 
-             "url"=>article[:url], "title"=>article[:title],
-             "facebook"=>article[:facebook], "twitter"=>article[:twitter],
-             "googleplus"=>article[:googleplus]}.to_json)
-  end
+#  File.open("results/articles/#{paper}/#{article_id}.json", "wb") do |f|
+#    f.write({"date"=>date.to_s, "gender"=>article[:gender], 
+#             "url"=>article[:url], "title"=>article[:title],
+#             "facebook"=>article[:facebook], "twitter"=>article[:twitter],
+#             "googleplus"=>article[:googleplus]}.to_json)
+#  end
   article_id += 1
 end
 

@@ -19,6 +19,8 @@ var GuardianView = Backbone.View.extend({
     this.width = 350;
     this.count_row_template = _.template($("#count_row_template").html());
     this.percent_row_template = _.template($("#percent_row_template").html());
+    this.article_weeks_template = _.template("<%=paper%> <%=section%>: articles per week, June 2011 - July 2012");
+    this.social_weeks_template = _.template("<%=paper%> <%=section%>: likes, shares, links on Facebook, Twitter, and Google+, June 2011 - July 2012")
   },
 
   render: function(column){
@@ -233,6 +235,8 @@ var GuardianView = Backbone.View.extend({
     el = $(e.target).parent('.graph_row');
     if(el.size() ==0){el=$(e.target);}
     paper_section = (el.attr('class').split(/\s+/))[1].split("_");
+    $("#article_weeks").html(this.article_weeks_template({paper:paper_section[0], section:paper_section[1]}));
+    $("#social_weeks").html(this.social_weeks_template({paper:paper_section[0], section:paper_section[1]}));
     this.load_weekly_data(paper_section[0], paper_section[1]);
     $("#weekly_data").fadeIn();
   },
