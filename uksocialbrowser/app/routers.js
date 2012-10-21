@@ -5,7 +5,9 @@ var GRouter = Backbone.Router.extend({
   },
   
   nocategory: function(){
-    g_view.load_paper_data(g_view.render_article_count_graph);
+    g_view.load_paper_data(g_view.render_article_percent_graph, "#sorted_bargraph_left");
+    g_view.load_paper_data(g_view.render_article_count_graph, "#sorted_bargraph_right");
+    $("#right_select").val("articlevolume");
   },
 
   categories: function(left,right){
