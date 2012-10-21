@@ -94,7 +94,9 @@
 
     <script type="text/template" id="percent_row_template">
       <% male_width = Math.round(m*100) - Math.round(m*female) - Math.round(m*mixed);%>
-      <div class="graph_row <%=rowclass%>"><span class="row_label"><%=label%></span><div class="female_data" style="width:<%=Math.round(m*female)%>px"><span class="graph_label"><%=female%>%</span></div><div class="mixed_data" style="width:<%=Math.round(m*mixed)%>px"><span class="graph_label"><%=mixed%>%</span></div><div class="male_data" style="width:<%=male_width%>px"><span class="graph_label"><%=male%>%</span></div></div>
+      <% female_width = Math.round(m*female);%>
+      <%if(mixed==0){male_width+=3; female_width+=3}%>
+      <div class="graph_row <%=rowclass%>"><span class="row_label"><%=label%></span><div class="female_data" style="width:<%=female_width%>px" title="<%=female%>%"><span class="graph_label"><%=female%>%</span></div><%if(mixed>0){%><div class="mixed_data" style="width:<%=Math.round(m*mixed)%>px" title="<%=mixed%>%"><span class="graph_label"><%=mixed%>%</span></div><%}%><div class="male_data" style="width:<%=male_width%>px" title="<%=male%>%"><span class="graph_label"><%=male%>%</span></div></div>
     </script>
 
     <script type="text/javascript" charset="utf-8" src="lib/jquery-1.7.2.min.js"></script>
