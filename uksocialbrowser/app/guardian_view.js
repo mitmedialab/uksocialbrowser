@@ -299,7 +299,7 @@ var GuardianView = Backbone.View.extend({
     var filter_keys = {"both":"B", "female":"F", "male":"M", "unknown":"X"};
     var graph_data = new Array();
     var barcolors = {"female":"#ddaa44","male":"#66aa66","both":"#2288aa","unknown":"#ccc"}
-    $.each(["male", "both", "female", "unknown"], function(i, key){
+    $.each(["female", "both", "male", "unknown"], function(i, key){
       var series ={}; 
       series["key"] = key;
       series["values"] = new Array();
