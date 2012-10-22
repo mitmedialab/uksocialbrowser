@@ -7,9 +7,9 @@
      <link rel="stylesheet" type="text/css" href="styles/force.css"/>
   </head>
   <body>
-
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
+        <div id="spinner" style="display:none"><img src="data/Spinning_wheel_throbber.gif"/></div>
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
@@ -61,6 +61,7 @@
 
      <div id="all_weekly_data">
        <h3 id="article_weeks"></h3>
+       <a id="timeseries_scroll_target" name="timeseries_scroll_target"></a>
        <div class="weekly_data row">
          <div class="span12" id="horizchart_top">
            <svg></svg>
@@ -102,6 +103,7 @@
     </script>
 
     <script type="text/javascript" charset="utf-8" src="lib/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="lib/jquery.scrollTo-1.4.3.1-min.js"></script>
     <script type="text/javascript" charset="utf-8" src="styles/bootstrap/js/bootstrap.min.jstyles/bootstrap/js/bootstrap.min.jss"></script>
     <script type="text/javascript" charset="utf-8" src="lib/crossfilter.js"></script>
 

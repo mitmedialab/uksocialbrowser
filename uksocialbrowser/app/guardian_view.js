@@ -16,6 +16,7 @@ var GuardianView = Backbone.View.extend({
     var that = this;
     this.papers={"guardian":false, "dailymail":false, "telegraph":false};
     this.paper_sections = {}
+    this.never_scrolled = true;
     this.width = 350;
     this.count_row_template = _.template($("#count_row_template").html());
     this.percent_row_template = _.template($("#percent_row_template").html());
@@ -242,6 +243,7 @@ var GuardianView = Backbone.View.extend({
   },
   
   load_weekly_data: function(paper, section){
+    $("#spinner").show()
     jQuery.getJSON("data/" + paper + "_" + section + "_articles.json", function(articles){
       that.articles = crossfilter(articles)
       that.week_dimension = that.articles.dimension(function(d){return parseInt(d.week)});
@@ -255,6 +257,11 @@ var GuardianView = Backbone.View.extend({
       that.cache_week_totals();
       that.draw_stacked_chart(that.generate_weekly_volume_data(that.week_group), "#horizchart_top svg");
       that.draw_stacked_chart(that.generate_weekly_volume_data(that.social_weeks), "#horizchart_bottom svg");
+      $("#spinner").hide()
+      if(that.never_scrolled){
+        $.scrollTo("#timeseries_scroll_target", 300);
+        that.never_scrolled = false;
+      }
     });
   },
 

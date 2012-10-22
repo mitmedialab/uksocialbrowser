@@ -24,6 +24,12 @@
   border-right:1px solid white;
 }
 
+#spinner{
+  position:absolute;
+  top:45px;
+  left:5px;
+}
+
 #main_container{
   margin-top:50px;
 }
