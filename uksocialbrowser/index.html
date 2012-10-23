@@ -30,15 +30,35 @@
 
     <!-- Contents -->
     <div class="container" id="main_container">
+     <div class="hero-unit">
+      <h2>UK News Gender Ranking: What They Publish vs What Readers Share</h2>
+      <p>How many UK news articles are by women? More importantly, does women's writing get heard online? This gender ranking compares content percent to the percent of likes and shares received by women's articles in the Guardian, Telegraph, and Daily Mail.</p> 
+      <div class="btn btn-success" onclick="$.scrollTo('#top_scroll_target', 300);" >Start Now</div>
+      <hr/>
+      <p><strong>Having trouble?</strong> Try loading this page with a recent version of Firefox, Chrome, or Safari. Weekly datafiles, particularly for news sections, are several megabytes and may take time to download.</>
+      <h3>About the Data</h3>
+      <p>We downloaded content for a year of the Guardian, Daily Mail, and Telegraph (&gt; 261,000 articles). In the first week of August, we collected Facebook, Twitter, and G+ likes, shares, and +1s for every article. We then <a href="http://civic.mit.edu/blog/natematias/data-science-for-gender-equality-monitoring-womens-voices-in-the-news">assigned an author gender</a> to as many articles as possible.</p>
+      <h3>Where to Start</h3>
+      <p><a class="btn btn-success" href="#articlepercent/articlevolume" onclick="$.scrollTo('#top_scroll_target', 300);">Article gender percent</a> ranks UK news sections by the percentage of articles by women. <a class="btn btn-success" href="#socialpercent/socialvolume" onclick="$.scrollTo('#top_scroll_target', 300);">Like/Share Percent</a> ranks news sections by the percentage of shares women's articles receive. <a href="#articlepercent/socialpercent">Compare article percent to social percent</a> to discover areas where the percentage of shared articles by women differs largely from the percentage that newsrooms publish.</p>
+      <h3>About</h3>
+      <p>Project by <a href="http://twitter.com/natematias">J. Nathan Matias</a>, at the MIT Media Lab <a href="http://civic.mit.edu">Center for Civic Media</a>.</p><p>For more information on my <a href="http://civic.mit.edu/blog/natematias/data-science-for-gender-equality-monitoring-womens-voices-in-the-news">News Gender Data Science project</a>, watch my talk at the MIT Knight Civic Media Conference (<a href="techtv.mit.edu/collections/civic-media-conference-2012/videos/19850-mit-civic-ignite-nathan-matias">video here</a>). You may like my visualization of <a href="http://civic.mit.edu/blog/natematias/media-representation-in-the-arab-uprisings-egypt-and-libya#comment-613610815">media representation in the Arab uprisings</a>.</p><p><strong class="label label-inverse">I'm hiring</strong> a London-based javascript developer for a gig with The RSA. <a href="http://rewiredstate.org/jobs/touchscreen-javascript-developer">Read the job listing at Rewired State</a>. </p>
+      <p>Thanks also to:</p>
+      <ul>
+        <li><a href="http://twitter.com/objectgroup">Lisa Evans</a> and <a href="http://twitter.com/arnicas">Lynn Cherney</a>, my collaborators on <a href="http://www.guardian.co.uk/news/datablog/2012/sep/07/gender-media-best-data-available">our first datablog post</a></li>
+        <li><a href="http://twitter.com/darkgreener">Anna Powell Smith</a> contributed <a href="http://www.guardian.co.uk/news/datablog/2012/apr/25/baby-names-data">baby name demographic data</a></li>
+        <li><a href="http://twitter.com/thecole">Cole Gillespie</a>, whose <a href="https://github.com/openNews/amo">amo project</a> collected social media data</li>
+      </ul>
+      <div id="top_scroll_target"></div>
+     </div>
       <hr/>
       <div id="frame">
         <div id ="annual_data" class="row">
         <div class="span7">
           <select id ="left_select">
-           <option value="articlepercent">Gender Percent, Articles</option>
-           <option value="articlevolume">Gender Count, Articles</option>
-           <option value="socialpercent">Gender Percent, Likes/Shares/etc</option>
-           <option value="socialvolume">Gender Count, Likes/Shares/etc</option>
+           <option value="articlepercent">Article Gender Percent</option>
+           <option value="articlevolume">Article Gender Count</option>
+           <option value="socialpercent">Like/Share Percent by Article Gender</option>
+           <option value="socialvolume">Like/Share Count by Article Gender</option>
           </select>
 
           <div id="sorted_bargraph_left">
@@ -47,10 +67,10 @@
 
         <div class="span5">
           <select id ="right_select">
-           <option value="articlepercent">Gender Percent, Articles</option>
-           <option value="articlevolume">Gender Count, Articles</option>
-           <option value="socialpercent">Gender Percent, Likes/Shares/etc</option>
-           <option value="socialvolume">Gender Count, Likes/Shares/etc</option>
+           <option value="articlepercent">Article Gender Percent</option>
+           <option value="articlevolume">Article Gender Count</option>
+           <option value="socialpercent">Like/Share Percent by Article Gender</option>
+           <option value="socialvolume">Like/Share Count by Article Gender</option>
           </select>
           <div id="sorted_bargraph_right">
           </div>
